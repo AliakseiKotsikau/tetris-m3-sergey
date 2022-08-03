@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.Events;
+using System.Linq;
 
 public class Board : MonoBehaviour
 {
@@ -40,6 +41,15 @@ public class Board : MonoBehaviour
         PieceLocked?.Invoke();
     }
 
+    public void SetTiles(Piece[] pieces, Vector3Int position)
+    {
+        for (int i = 0; i < pieces.Length; i++)
+        {
+            Vector3Int tilePosition = pieces[i].Cell + position;
+            tilemap.SetTile(tilePosition, pieces[i].Color);
+        }
+    }
+    
     public void SetTiles(Vector3Int[] cells, Vector3Int position, Tile tile)
     {
         for (int i = 0; i < cells.Length; i++)
@@ -49,9 +59,9 @@ public class Board : MonoBehaviour
         }
     }
     
-    public void SetTiles(Tetromino piece, Tile tile)
+    public void SetTiles(Tetromino tetromino, Tile tile)
     {
-        SetTiles(piece.Cells, piece.Position, tile);
+        SetTiles(tetromino.Pieces, tetromino.Position);
     }
 
     public void SetTiles(Tetromino piece)
@@ -63,7 +73,7 @@ public class Board : MonoBehaviour
     {
         SetTiles(activePiece);
     }
-
+    
     public void ClearTiles(Vector3Int[] cells, Vector3Int position)
     {
         for (int i = 0; i < cells.Length; i++)
@@ -72,10 +82,15 @@ public class Board : MonoBehaviour
             tilemap.SetTile(tilePosition, null);
         }
     }
-    
-    public void ClearPieceTiles(Tetromino piece)
+
+    public void ClearTiles(Piece[] pieces, Vector3Int position)
     {
-        ClearTiles(piece.Cells, piece.Position);
+        ClearTiles(pieces.Select(piece => piece.Cell).ToArray(), position);
+    }
+
+    public void ClearPieceTiles(Tetromino tetromino)
+    {
+        ClearTiles(tetromino.Pieces, tetromino.Position);
     }
 
     public void ClearActivePieceTiles()
@@ -83,11 +98,11 @@ public class Board : MonoBehaviour
         ClearPieceTiles(activePiece);
     }
 
-    public bool IsValidPosition(Tetromino piece, Vector3Int position)
+    public bool IsValidPosition(Tetromino tetromino, Vector3Int position)
     {
-        for (int i = 0; i < piece.Cells.Length; i++)
+        for (int i = 0; i < tetromino.Pieces.Length; i++)
         {
-            Vector3Int tilePosition = piece.Cells[i] + position;
+            Vector3Int tilePosition = tetromino.Pieces[i].Cell + position;
 
             if (tilemap.HasTile(tilePosition))
             {

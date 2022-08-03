@@ -13,7 +13,7 @@ public class Ghost : MonoBehaviour
 
     private Board ghostBoard;
 
-    private Tetromino trackingPiece;
+    private Tetromino trackingTetromino;
     private Vector3Int[] ghostCells;
     private Vector3Int ghostPosition;
 
@@ -33,18 +33,18 @@ public class Ghost : MonoBehaviour
 
     private void Drop()
     {
-        Vector3Int position = trackingPiece.Position;
+        Vector3Int position = trackingTetromino.Position;
 
         int current = position.y;
         int bottom = -ghostBoard.BoardSize.y / 2 - 1;
 
-        mainBoard.ClearPieceTiles(trackingPiece);
+        mainBoard.ClearPieceTiles(trackingTetromino);
 
         for (int row = current; row >= bottom; row--)
         {
             position.y = row;
 
-            if (mainBoard.IsValidPosition(trackingPiece, position))
+            if (mainBoard.IsValidPosition(trackingTetromino, position))
             {
                 ghostPosition = position;
             }
@@ -54,7 +54,7 @@ public class Ghost : MonoBehaviour
             }
         }
 
-        mainBoard.SetTiles(trackingPiece);
+        mainBoard.SetTiles(trackingTetromino);
     }
 
     private void CopyTrackingPieceTiles()
@@ -62,12 +62,12 @@ public class Ghost : MonoBehaviour
         // делаем так, чтобы очистить старые тайлы и только потом получить новое положение
         for (int i = 0; i < ghostCells.Length; i++)
         {
-            ghostCells[i] = trackingPiece.Cells[i];
+            ghostCells[i] = trackingTetromino.Pieces[i].Cell;
         }
     }
 
     public void SetTrackingPiece(Tetromino piece)
     {
-        trackingPiece = piece;
+        trackingTetromino = piece;
     }
 }

@@ -4,11 +4,10 @@ using UnityEngine.Tilemaps;
 public class Tetromino : MonoBehaviour
 {
     private TetrominoData tetrominoData;
-    private Vector3Int[] cells;
-    
     private Tile color;
+    private Piece[] pieces;
 
-    public Vector3Int[] Cells => cells;
+    public Piece[] Pieces => pieces;
     public Vector3Int Position { get; set; }
     public TetrominoData TetrominoData => tetrominoData;
     public int RotationIndex { get; set; }
@@ -21,14 +20,14 @@ public class Tetromino : MonoBehaviour
         this.RotationIndex = 0;
         color = tiles[0];
 
-        if (cells == null)
+        if (pieces == null)
         {
-            cells = new Vector3Int[tetrominoData.Cells.Length];
+            pieces = new Piece[tetrominoData.Cells.Length];
         }
 
-        for (int i = 0; i < tetrominoData.Cells.Length; i++)
+        for (int i = 0; i < pieces.Length; i++)
         {
-            cells[i] = (Vector3Int)tetrominoData.Cells[i];
+            pieces[i] = new Piece((Vector3Int)tetrominoData.Cells[i], tiles[Random.Range(0, tiles.Length)]);
         }
     }
 
@@ -36,9 +35,9 @@ public class Tetromino : MonoBehaviour
     {
         RotationIndex = Wrap(RotationIndex + direction, 0, 4);
 
-        for (int i = 0; i < cells.Length; i++)
+        for (int i = 0; i < pieces.Length; i++)
         {
-            Vector3 cellPosition = cells[i];
+            Vector3 cellPosition = pieces[i].Cell;
 
             int x, y;
 
@@ -55,7 +54,7 @@ public class Tetromino : MonoBehaviour
                 y = Mathf.RoundToInt((cellPosition.x * Data.RotationMatrix[2] * direction) + (cellPosition.y * Data.RotationMatrix[3] * direction));
             }
 
-            cells[i] = new Vector3Int(x, y, 0);
+            pieces[i].Cell = new Vector3Int(x, y, 0);
         }
     }
 
