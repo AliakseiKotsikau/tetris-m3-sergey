@@ -26,8 +26,6 @@ public class MatchThreeGrid : MonoBehaviour
     {
         foreach (var item in newPieces)
         {
-            Debug.Log((item.Position.x) + "     " + (item.Position.y));
-            Debug.Log((item.Position.x + boardSize.x / 2) + "     " + (item.Position.y + boardSize.y / 2));
             pieces[item.Position.x + boardSize.x/2, item.Position.y + boardSize.y / 2] = item;
         }
     }
@@ -51,7 +49,8 @@ public class MatchThreeGrid : MonoBehaviour
 
         foreach (var item in matches)
         {
-            Debug.Log(item);
+            pieces[item.Position.x + boardSize.x / 2, item.Position.y + boardSize.y / 2] = null;
         }
+        board.ClearTiles(matches);
     }
 }

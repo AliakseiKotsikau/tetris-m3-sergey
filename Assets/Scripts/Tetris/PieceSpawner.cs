@@ -24,7 +24,7 @@ public class PieceSpawner : MonoBehaviour
     private PieceMover pieceMover;
     private TetrominoData[] tetrominos;
 
-    private void Awake()
+    private void Start()
     {
         InitTetrominos();
 

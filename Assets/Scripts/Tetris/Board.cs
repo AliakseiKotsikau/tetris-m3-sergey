@@ -62,7 +62,7 @@ public class Board : MonoBehaviour
             tilemap.SetTile(tilePosition, pieces[i].Color);
         }
     }
-    
+
     public void SetTiles(Vector3Int[] cells, Vector3Int position, Tile tile)
     {
         for (int i = 0; i < cells.Length; i++)
@@ -71,7 +71,7 @@ public class Board : MonoBehaviour
             tilemap.SetTile(tilePosition, tile);
         }
     }
-    
+
     public void SetTiles(Tetromino tetromino, Tile tile)
     {
         SetTiles(tetromino.Pieces, tetromino.Position);
@@ -85,6 +85,25 @@ public class Board : MonoBehaviour
     public void UpdateActivePieceTiles()
     {
         SetTiles(activePiece);
+    }
+
+    public void ClearTiles(List<Piece> pieces)
+    {
+        //for (int i = 0; i < pieces.Count; i++)
+        //{
+        //    tilemap.SetTile(pieces[i].Position, null);
+        //}
+        StartCoroutine(ClearTilesWithSound(pieces));
+    }
+
+    private IEnumerator ClearTilesWithSound(List<Piece> pieces)
+    {
+        for (int i = 0; i < pieces.Count; i++)
+        {
+            tilemap.SetTile(pieces[i].Position, null);
+            SoundManager.Instance.PlayBubbleSound(pieces[i].Position);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
     
     public void ClearTiles(Vector3Int[] cells, Vector3Int position)
