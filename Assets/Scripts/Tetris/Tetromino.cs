@@ -28,7 +28,22 @@ public class Tetromino : MonoBehaviour
         // create pieces with different colors
         for (int i = 0; i < pieces.Length; i++)
         {
-            pieces[i] = new Piece((Vector3Int)tetrominoData.Cells[i], tiles[Random.Range(0, tiles.Length)]);
+            Vector3Int relativePositionInTetromino = (Vector3Int)tetrominoData.Cells[i];
+            Vector3Int piecePositionOnBoard = relativePositionInTetromino + position;
+            Tile tile = tiles[Random.Range(0, tiles.Length)];
+
+            pieces[i] = new Piece(relativePositionInTetromino, piecePositionOnBoard, tile);
+        }
+    }
+
+    public void UpdatePiecesPositions()
+    {
+        for (int i = 0; i < pieces.Length; i++)
+        {
+            Vector3Int relativePositionInTetromino = pieces[i].Cell;
+            Vector3Int piecePositionOnBoard = relativePositionInTetromino + Position;
+
+            pieces[i].Position = piecePositionOnBoard;
         }
     }
 

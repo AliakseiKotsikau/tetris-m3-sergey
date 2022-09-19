@@ -27,6 +27,13 @@ public class Board : MonoBehaviour
 
     public UnityAction PieceLocked;
 
+    private MatchThreeGrid matchThreeGrid;
+
+    private void Awake()
+    {
+        matchThreeGrid = GetComponent<MatchThreeGrid>();
+    }
+
     public void AddPiece(Tetromino piece)
     {
         activePiece = piece;
@@ -36,6 +43,8 @@ public class Board : MonoBehaviour
     public void Lock()
     {
         SetTiles(activePiece);
+        activePiece.UpdatePiecesPositions();
+        matchThreeGrid.AddPieces(activePiece.Pieces);
         ClearLines();
         Destroy(activePiece.gameObject);
 

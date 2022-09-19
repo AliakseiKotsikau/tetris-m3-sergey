@@ -50,7 +50,7 @@ public class GameManager : Singleton<GameManager>
 
     private void EnableGhostBoardForTetrisMode()
     {
-        ghostBoard.ClearBoard();
+        //ghostBoard.ClearBoard();
         ghostBoard.enabled = GameState.TETRIS == State;
     }
 

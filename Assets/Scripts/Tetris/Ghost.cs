@@ -75,4 +75,9 @@ public class Ghost : MonoBehaviour
     {
         ghostBoard.ClearBoard();
     }
+
+    private void OnDisable()
+    {
+        ghostBoard.ClearBoard();
+    }
 }
