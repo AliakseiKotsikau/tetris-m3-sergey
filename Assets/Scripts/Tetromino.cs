@@ -25,6 +25,7 @@ public class Tetromino : MonoBehaviour
             pieces = new Piece[tetrominoData.Cells.Length];
         }
 
+        // create pieces with different colors
         for (int i = 0; i < pieces.Length; i++)
         {
             pieces[i] = new Piece((Vector3Int)tetrominoData.Cells[i], tiles[Random.Range(0, tiles.Length)]);

@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PieceMover), typeof(PieceSpawner))]
-public class InputController : MonoBehaviour
+public class TetrisInputController : MonoBehaviour
 {
     [SerializeField]
     private Board board;
 
     private PieceMover pieceMover;
 
-    private void Awake()
+    private void Start()
     {
         pieceMover = GetComponent<PieceMover>();
+        GameManager.Instance.ModeSwaped += SwapMode;
     }
 
     private void Update()
     {
+        if(!GameManager.Instance.IsTetrisMode()) return;
+
         if (!Input.anyKeyDown) return;
 
         board.ClearActivePieceTiles();
@@ -49,5 +52,10 @@ public class InputController : MonoBehaviour
         }
 
         board.UpdateActivePieceTiles();
+    }
+
+    private void SwapMode()
+    {
+        pieceMover.HardDrop();
     }
 }

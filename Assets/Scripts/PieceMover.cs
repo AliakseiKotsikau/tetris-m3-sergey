@@ -18,18 +18,26 @@ public class PieceMover : MonoBehaviour
 
     private void Start()
     {
-        stepTime = Time.time + stepDelay;
-        lockTime = 0f;
+        GameManager.Instance.ModeSwaped += OnStartMoving;
+        GameManager.Instance.GameStarted += OnStartMoving;
     }
 
     private void Update()
     {
+        if (!GameManager.Instance.IsTetrisMode()) return;
+
         lockTime += Time.deltaTime;
 
         if (Time.time >= stepTime)
         {
             Step();
         }
+    }
+
+    private void OnStartMoving()
+    {
+        stepTime = Time.time + stepDelay;
+        lockTime = 0f;
     }
 
     public void SetActivePiece(Tetromino piece)

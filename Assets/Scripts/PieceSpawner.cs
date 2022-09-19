@@ -27,13 +27,11 @@ public class PieceSpawner : MonoBehaviour
     private void Awake()
     {
         InitTetrominos();
-        pieceMover = GetComponent<PieceMover>();
-        board.PieceLocked += SpawnPiece;
-    }
 
-    void Start()
-    {
-        SpawnPiece();
+        pieceMover = GetComponent<PieceMover>();
+
+        board.PieceLocked += SpawnPiece;
+        GameManager.Instance.GameStarted += SpawnPiece;
     }
 
     private void SpawnPiece()

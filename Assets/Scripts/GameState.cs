@@ -5,5 +5,6 @@ using UnityEngine;
 public enum GameState
 {
     TETRIS,
-    MATCH_3
+    MATCH_3,
+    PAUSE
 }

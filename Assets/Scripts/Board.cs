@@ -38,7 +38,11 @@ public class Board : MonoBehaviour
         SetTiles(activePiece);
         ClearLines();
         Destroy(activePiece.gameObject);
-        PieceLocked?.Invoke();
+
+        if (GameManager.Instance.IsTetrisMode())
+        {
+            PieceLocked?.Invoke();
+        }
     }
 
     public void SetTiles(Piece[] pieces, Vector3Int position)

@@ -25,6 +25,8 @@ public class Ghost : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (GameState.MATCH_3 == GameManager.Instance.State) return;
+
         ghostBoard.ClearTiles(ghostCells, ghostPosition);
         CopyTrackingPieceTiles();
         Drop();

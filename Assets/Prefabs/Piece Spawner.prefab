@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8106514979100119117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8106514979100119154}
+  - component: {fileID: 8106514979100119153}
+  - component: {fileID: 8106514979100119152}
+  - component: {fileID: 8106514979100119155}
+  m_Layer: 0
+  m_Name: Piece Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8106514979100119154
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8106514979100119117}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8106514979100119153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8106514979100119117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47662f81b3599b84487ae9912f1f5138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  piecePrefab: {fileID: 2234586320508265480, guid: 0f0d0bf19a927404bafce9dbb5e07af8, type: 3}
+  board: {fileID: 0}
+  ghost: {fileID: 0}
+  tiles:
+  - {fileID: 11400000, guid: 11c4bd4eb62fec647ad9cbc936b29f96, type: 2}
+  - {fileID: 11400000, guid: 81fe5228a1325a04b84e25f6bff24d80, type: 2}
+  - {fileID: 11400000, guid: 4cffce9cd57e4b04a9466de67ed2e14d, type: 2}
+  - {fileID: 11400000, guid: 67b9d804d9a0f30479d352abad646e42, type: 2}
+--- !u!114 &8106514979100119152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8106514979100119117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3531280e94bc0d499213ebecf3e58c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  board: {fileID: 0}
+--- !u!114 &8106514979100119155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8106514979100119117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a6ef6c5f0e6674fa293a6b89a4bbbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  board: {fileID: 0}
+  stepDelay: 1
+  lockDelay: 0.5
