@@ -32,6 +32,7 @@ public class PieceSpawner : MonoBehaviour
 
         board.PieceLocked += SpawnPiece;
         GameManager.Instance.GameStarted += SpawnPiece;
+        GameManager.Instance.TetrisModeEnabled += SpawnPiece;
     }
 
     private void SpawnPiece()

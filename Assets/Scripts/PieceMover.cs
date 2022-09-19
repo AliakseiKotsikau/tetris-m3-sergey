@@ -18,7 +18,7 @@ public class PieceMover : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.ModeSwaped += OnStartMoving;
+        GameManager.Instance.TetrisModeEnabled += OnStartMoving;
         GameManager.Instance.GameStarted += OnStartMoving;
     }
 

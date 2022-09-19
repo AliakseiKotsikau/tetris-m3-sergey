@@ -13,7 +13,7 @@ public class TetrisInputController : MonoBehaviour
     private void Start()
     {
         pieceMover = GetComponent<PieceMover>();
-        GameManager.Instance.ModeSwaped += SwapMode;
+        GameManager.Instance.Match3ModeEnabled += DropActivePiece;
     }
 
     private void Update()
@@ -54,8 +54,9 @@ public class TetrisInputController : MonoBehaviour
         board.UpdateActivePieceTiles();
     }
 
-    private void SwapMode()
+    private void DropActivePiece()
     {
+        board.ClearActivePieceTiles();
         pieceMover.HardDrop();
     }
 }

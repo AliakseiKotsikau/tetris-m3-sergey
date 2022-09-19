@@ -12,7 +12,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private GameObject playPanel;
 
-    public UnityAction ModeSwaped;
+    public UnityAction TetrisModeEnabled;
+    public UnityAction Match3ModeEnabled;
     public UnityAction GameStarted;
 
     public GameState State { get; private set; }
@@ -29,20 +30,27 @@ public class GameManager : Singleton<GameManager>
         State = State == GameState.TETRIS ? GameState.MATCH_3 : GameState.TETRIS;
         EnableGhostBoardForTetrisMode();
 
-        ModeSwaped?.Invoke();
+        if (State == GameState.TETRIS)
+        {
+            TetrisModeEnabled?.Invoke();
+        }else if(State == GameState.MATCH_3)
+        {
+            Match3ModeEnabled?.Invoke();
+        }
     }
 
     public void OnPlay()
     {
+        State = GameState.TETRIS;
         EnableGhostBoardForTetrisMode();
         playPanel.gameObject.SetActive(false);
-        State = GameState.TETRIS;
 
         GameStarted?.Invoke();
     }
 
     private void EnableGhostBoardForTetrisMode()
     {
+        ghostBoard.ClearBoard();
         ghostBoard.enabled = GameState.TETRIS == State;
     }
 
