@@ -35,21 +35,21 @@ public class TileSwaper : MonoBehaviour
         var firstTilePos = tilemap.WorldToCell(firstTouchPosition);
         var secondTilePos = tilemap.WorldToCell(finalTouchPosition);
 
-        SwapTiles(firstTilePos, secondTilePos);
+        matchThreeGrid.SwapTiles(firstTilePos, secondTilePos);
     }
 
-    private void SwapTiles(Vector3Int firstTilePos, Vector3Int secondTilePos)
-    {
-        Tile firstTile = tilemap.GetTile<Tile>(firstTilePos);
-        Tile secondTile = tilemap.GetTile<Tile>(secondTilePos);
+    //private void SwapTiles(Vector3Int firstTilePos, Vector3Int secondTilePos)
+    //{
+    //    Tile firstTile = tilemap.GetTile<Tile>(firstTilePos);
+    //    Tile secondTile = tilemap.GetTile<Tile>(secondTilePos);
 
-        if (firstTile && secondTile)
-        {
-            tilemap.SetTile(secondTilePos, firstTile);
-            tilemap.SetTile(firstTilePos, secondTile);
+    //    if (firstTile && secondTile)
+    //    {
+    //        tilemap.SetTile(secondTilePos, firstTile);
+    //        tilemap.SetTile(firstTilePos, secondTile);
 
-            matchThreeGrid.SwapPieces(firstTilePos, secondTilePos);
-            matchThreeGrid.FindMatches();
-        }
-    }
+    //        matchThreeGrid.SwapPieces(firstTilePos, secondTilePos);
+    //        matchThreeGrid.FindMatches();
+    //    }
+    //}
 }
